@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-spring
+  template:
+    metadata:
+      labels:
+        app: demo-spring
+    spec:
+      containers:
+      - name: demo-spring
+        image: demo-spring-secret:1.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mi-secret
+              key: DB_USER
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mi-secret
+              key: DB_PASS
