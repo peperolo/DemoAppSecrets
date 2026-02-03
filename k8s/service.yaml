@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demo-spring
+  namespace: demo-spring 
 spec:
   type: NodePort
   selector:
